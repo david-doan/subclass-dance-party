@@ -1,6 +1,29 @@
 $(document).ready(function() {
   window.dancers = [];
 
+  var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+  var convertHex = function (hex, opacity) {
+    hex = hex.replace('#', '');
+    r = parseInt(hex.substring(0, 2), 16);
+    g = parseInt(hex.substring(2, 4), 16);
+    b = parseInt(hex.substring(4, 6), 16);
+
+    result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+    return result;
+  };
+
+  var newMaskColor = convertHex(randomColor, 90);  
+
+  $('.dfmask').css( {'background': 'linear-gradient(' + newMaskColor + ', rgba(255,0,0,0))'} );
+
+  setInterval(function () {
+    var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    var newMaskColor = convertHex(randomColor, 90);
+    $('.dfmask').css( {'background': 'linear-gradient(' + newMaskColor + ', rgba(255,0,0,0))'} );      
+  }, 500);
+
+  // $('.danceFloor').css('cursor', 'url(https://theforgottenshepherdess.files.wordpress.com/2011/06/crosshairs.png), auto');
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -30,7 +53,7 @@ $(document).ready(function() {
 
     window.dancers.push(dancer);
     
-    $('body').append(dancer.$node);
+    $('.danceFloor').append(dancer.$node);
   });
 });
 

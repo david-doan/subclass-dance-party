@@ -17,10 +17,17 @@ makeMovingDancer.prototype.constructor = makeMovingDancer;
 
 makeMovingDancer.prototype.step = function() {
   makeDancer.prototype.step.call(this);
+  
   var closure = this;
+
   $(document).ready(function() {
-    closure.animateDiv(); 
-  }); 
+    if (closure.isDancing) {
+      console.log(closure.isDancing);
+      closure.animateDiv();   
+    } else {
+      $(closure.$node).stop(true, true);
+    }     
+  });     
 };
 
 

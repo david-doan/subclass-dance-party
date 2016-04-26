@@ -25,3 +25,20 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
+
+.danceFloor {
+  background: url("http://orig01.deviantart.net/0df9/f/2015/322/0/4/roxbury_club_dance_floor_main_room_by_winampers_pro-d9h4lsj.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-size: ;
+  height: 100%;
+  cursor: url(https://www.wpclipart.com/signs_symbol/targets/crosshair/crosshair_1_T.png), auto;
+
+}
+
+.dfmask {
+  height: 100%;
+  background: linear-gradient(rgba(255,0,0,.3), rgba(255,0,0,0));
+}
