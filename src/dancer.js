@@ -16,11 +16,13 @@ var makeDancer = function(top, left, timeBetweenSteps) {
 // use jQuery to create an HTML <span> tag
 // makeDancer.prototype.$node = $('<span class="dancer"></span>');
 
+makeDancer.prototype.$node = $('<span class="dancer"></span>');
+
 makeDancer.prototype.step = function(timeBetweenSteps) {
   // the basic dancer doesn't do anything interesting at all on each step,
   // it just schedules the next step
   var closure = this;
-  setTimeout(function(){ closure.step(); }, this.timeBetweenSteps);
+  setTimeout(function() { closure.step(); }, this.timeBetweenSteps);
 };
 
 makeDancer.prototype.setPosition = function(top, left) {
