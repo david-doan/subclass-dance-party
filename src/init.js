@@ -1,6 +1,7 @@
 $(document).ready(function() {
   window.dancers = [];
 
+  //generate random hex color
   var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
   var convertHex = function (hex, opacity) {
@@ -12,11 +13,11 @@ $(document).ready(function() {
     result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
     return result;
   };
-
+  // convert hex to rgba(r,g,b,a)
   var newMaskColor = convertHex(randomColor, 90);  
-
+  // initializes dance floor color mask
   $('.dfmask').css( {'background': 'linear-gradient(' + newMaskColor + ', rgba(255,0,0,0))'} );
-
+  // randomize color every 500ms
   setInterval(function () {
     var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
     var newMaskColor = convertHex(randomColor, 90);
@@ -55,5 +56,20 @@ $(document).ready(function() {
     
     $('.danceFloor').append(dancer.$node);
   });
+
+  $('.lineUp').on('click', function(event){
+    var xNum = 0;
+    var yNum = 0;
+
+    for(var i=0; i<window.dancers.length; i++){
+      window.dancers[i].stop();
+      window.dancers[i].getInline(xNum, yNum);
+      xNum = xNum + 20;
+      yNum = yNum + 20;
+
+    }
+       
+  }); 
+
 });
 

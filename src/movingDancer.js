@@ -20,14 +20,13 @@ makeMovingDancer.prototype.step = function() {
   
   var closure = this;
 
-  $(document).ready(function() {
-    if (closure.isDancing) {
-      console.log(closure.isDancing);
-      closure.animateDiv();   
-    } else {
-      $(closure.$node).stop(true, true);
-    }     
-  });     
+  if (closure.isDancing) {
+    console.log(closure.isDancing);
+    closure.animateDiv();   
+  } else {
+    $(closure.$node).stop(true, false);
+    $(closure.$node).clearQueue().finish();
+  }          
 };
 
 
@@ -48,7 +47,9 @@ makeMovingDancer.prototype.animateDiv = function() {
   var closure = this;
   
   $(this.$node).animate({ top: newq[0], left: newq[1] }, speed, function() {
-    closure.animateDiv();        
+    if (closure.isDancing) {
+      closure.animateDiv();  
+    }    
   });
     
 };

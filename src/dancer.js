@@ -27,9 +27,11 @@ makeDancer.prototype.step = function(timeBetweenSteps) {
   setTimeout(function() { 
     if (closure.isDancing) {
       closure.step();   
-    } else {
-      $(closure.$node).stop(true, true);
-    }
+    } 
+    // else {
+    //   $(closure.$node).stop(true, false);
+    //   $(closure.$node).clearQueue().finish();
+    // }
   }, this.timeBetweenSteps);  
 };      
 
@@ -46,8 +48,14 @@ makeDancer.prototype.setPosition = function(top, left) {
 
 makeDancer.prototype.stop = function() {
   this.isDancing = false;
+  $(this.$node).stop(true, false);
+  $(this.$node).clearQueue().finish();
 };
 
 makeDancer.prototype.dance = function() {
   this.isDancing = true;
+};
+
+makeDancer.prototype.getInline = function(x, y) {
+  $(this.$node).animate({ top: x, left: y }, 1000);
 };
