@@ -3,6 +3,7 @@ var makeSizeDancer = function(top, left, timeBetweenSteps) {
   this.maxSize = Math.floor(Math.random() * 50) + 10;
   this.minSize = 9;
   this.sizeStep = Math.floor(Math.random() * 10) + 1;
+  this.color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
   // so we must keep a copy of the old version of this function
 
@@ -26,13 +27,19 @@ makeSizeDancer.prototype.step = function() {
   makeDancer.prototype.step.call(this);
   //assign it a id for a random color
   var currDancer = $(this.$node);
-  var currSize = parseInt(currDancer.css('border-radius'));
-  if(currSize < this.maxSize){
-    currDancer.css('border-radius',currSize + this.sizeStep);
-  } else if() {
-    currDancer.css('border-radius',currSize - this.sizeStep);
+  // currDancer.toggle();
+  var currSize = parseInt(currDancer.css('border'));
+  if (currSize < this.maxSize) {
+    currSize += this.sizeStep;
+    currDancer.css('border', currSize + 'px solid ' + this.color);
+  } else if (currSize > this.maxSize) {
+    currSize -= this.sizeStep;
+    currDancer.css('border', currSize + 'px solid' + this.color);
+  } else if (currSize < this.minSize) {
+    currSize += this.sizeStep;
+    currDancer.css('border', currSize + 'px solid' + this.color);
   }
-  var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-  $(this.$node).css('border-color', randomColor);
+  // var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  // $(this.$node).css('border-color', randomColor);
 };
 
