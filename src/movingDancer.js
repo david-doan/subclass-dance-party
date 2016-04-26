@@ -2,6 +2,14 @@ var makeMovingDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
   $(this.$node).append('<img src="src/doge.jpg"></img>');
   $(this.$node).css('border', 'none');
+  $(this.$node).click(function(){
+    $(this).children().attr("src", 'src/explosion.gif-c200');
+    $(this).children().delay(800).hide(0);
+    var closure = this;
+    setTimeout(function() {
+      $(closure).remove();
+    }, 1000);
+  });
 };
 
 makeMovingDancer.prototype = Object.create(makeDancer.prototype);
@@ -52,3 +60,6 @@ makeMovingDancer.prototype.calcSpeed = function(prev, next) {
   return speed;
 
 };
+
+
+
