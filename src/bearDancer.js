@@ -1,11 +1,11 @@
-var makeMovingDancer = function(top, left, timeBetweenSteps) {
+var makeBearDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
-  $(this.$node).append('<img src="src/doge.jpg"></img>');
+  $(this.$node).append('<img src="src/bear.png"></img>');
   $(this.$node).css('border', 'none');
   $(this.$node).click(function(){
     $(this).children().attr("src", 'src/explosion.gif-c200');
     var score = $('#numScore').text();
-    var newScore = parseInt(score, 10) + 15;
+    var newScore = parseInt(score, 10) + 10;
     $('#numScore').text(newScore);
     $(this).children().delay(800).hide(0);
     var closure = this;
@@ -15,10 +15,10 @@ var makeMovingDancer = function(top, left, timeBetweenSteps) {
   });
 };
 
-makeMovingDancer.prototype = Object.create(makeDancer.prototype);
-makeMovingDancer.prototype.constructor = makeMovingDancer;
+makeBearDancer.prototype = Object.create(makeDancer.prototype);
+makeBearDancer.prototype.constructor = makeBearDancer;
 
-makeMovingDancer.prototype.step = function() {
+makeBearDancer.prototype.step = function() {
   makeDancer.prototype.step.call(this);
   
   var closure = this;
@@ -32,7 +32,7 @@ makeMovingDancer.prototype.step = function() {
 };
 
 
-makeMovingDancer.prototype.makeNewPosition = function() {
+makeBearDancer.prototype.makeNewPosition = function() {
   var h = $(window).height() - 50;
   var w = $(window).width() - 50;
 
@@ -42,7 +42,7 @@ makeMovingDancer.prototype.makeNewPosition = function() {
   return [nh, nw];    
 };
 
-makeMovingDancer.prototype.animateDiv = function() {
+makeBearDancer.prototype.animateDiv = function() {
   var newq = this.makeNewPosition();
   var oldq = $(this.$node).offset();
   var speed = this.calcSpeed([oldq.top, oldq.left], newq);
@@ -56,14 +56,14 @@ makeMovingDancer.prototype.animateDiv = function() {
     
 };
 
-makeMovingDancer.prototype.calcSpeed = function(prev, next) {
+makeBearDancer.prototype.calcSpeed = function(prev, next) {
     
   var x = Math.abs(prev[1] - next[1]);
   var y = Math.abs(prev[0] - next[0]);
 
   var greatest = x > y ? x : y;
 
-  var speedModifier = 0.7;
+  var speedModifier = 0.5;
 
   var speed = Math.ceil(greatest / speedModifier);
 

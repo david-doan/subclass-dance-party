@@ -9,13 +9,38 @@ body{
 body, a:link, a:visited, a:active{
   color: lightblue;
 }
+
+.titleBar{
+  width: 100%;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.hitCounter{
+  width: 150px;
+  height: 250px;
+  bottom: 0;
+  position: absolute;
+  font-size: 100px;
+  text-align: center;
+}
+
+#score {
+  font-size: 60px;
+  padding-top: -100px;
+}
+
 .title, .addDancerButton, .lineUp, .getInCircle, .bigCircle{
   padding:5px 12px;
+  width: 126px;
   float:left;
 }
 .topbar{
-  height:32px;
+  width: 150px;
+  height: 100%;
   background-color: #555;
+  position: fixed;
 }
 .title{
   background-color: #777;
@@ -24,6 +49,19 @@ body, a:link, a:visited, a:active{
   border:10px solid red;
   border-radius:10px;
   position:absolute;
+
+}
+
+@keyframes wiggle {
+  0% {-webkit-transform:rotate(7deg);}
+  50% {-webkit-transform:rotate(-7deg);}
+  100% {-webkit-transform:rotate(7deg);}
+}
+
+.wiggler {
+  -webkit-animation: wiggle 0.5s infinite;
+  -moz-animation: wiggle 0.5s infinite;
+  animation: wiggle 0.5s infinite;
 }
 
 .danceFloor {

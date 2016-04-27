@@ -1,11 +1,20 @@
-var makeMovingDancer = function(top, left, timeBetweenSteps) {
+var makePengDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
-  $(this.$node).append('<img src="src/doge.jpg"></img>');
+  this.movRight = true;
+  this.topp = top;
+  $(this.$node).append('<img src="src/penguin.png"></img>');
   $(this.$node).css('border', 'none');
+  $(this.$node).addClass('wiggler');
+  this.maxLeft = left - Math.floor(Math.random * 100);
+  this.maxLeft < 0 ? this.maxLeft = 0 : this.maxLeft;
+
+  this.maxRight = left + Math.floor(Math.random * 100);
+  this.maxRight > $(window).width() ? this.maxRight = 0 : this.maxRight;
+  
   $(this.$node).click(function(){
     $(this).children().attr("src", 'src/explosion.gif-c200');
     var score = $('#numScore').text();
-    var newScore = parseInt(score, 10) + 15;
+    var newScore = parseInt(score, 10) + 1;
     $('#numScore').text(newScore);
     $(this).children().delay(800).hide(0);
     var closure = this;
@@ -15,10 +24,10 @@ var makeMovingDancer = function(top, left, timeBetweenSteps) {
   });
 };
 
-makeMovingDancer.prototype = Object.create(makeDancer.prototype);
-makeMovingDancer.prototype.constructor = makeMovingDancer;
+makePengDancer.prototype = Object.create(makeDancer.prototype);
+makePengDancer.prototype.constructor = makePengDancer;
 
-makeMovingDancer.prototype.step = function() {
+makePengDancer.prototype.step = function() {
   makeDancer.prototype.step.call(this);
   
   var closure = this;
@@ -31,8 +40,7 @@ makeMovingDancer.prototype.step = function() {
   }          
 };
 
-
-makeMovingDancer.prototype.makeNewPosition = function() {
+makePengDancer.prototype.makeNewPosition = function() {
   var h = $(window).height() - 50;
   var w = $(window).width() - 50;
 
@@ -42,7 +50,7 @@ makeMovingDancer.prototype.makeNewPosition = function() {
   return [nh, nw];    
 };
 
-makeMovingDancer.prototype.animateDiv = function() {
+makePengDancer.prototype.animateDiv = function() {
   var newq = this.makeNewPosition();
   var oldq = $(this.$node).offset();
   var speed = this.calcSpeed([oldq.top, oldq.left], newq);
@@ -56,14 +64,14 @@ makeMovingDancer.prototype.animateDiv = function() {
     
 };
 
-makeMovingDancer.prototype.calcSpeed = function(prev, next) {
+makePengDancer.prototype.calcSpeed = function(prev, next) {
     
   var x = Math.abs(prev[1] - next[1]);
   var y = Math.abs(prev[0] - next[0]);
 
   var greatest = x > y ? x : y;
 
-  var speedModifier = 0.7;
+  var speedModifier = 0.1;
 
   var speed = Math.ceil(greatest / speedModifier);
 
@@ -72,4 +80,21 @@ makeMovingDancer.prototype.calcSpeed = function(prev, next) {
 };
 
 
+// makePengDancer.prototype.animateDiv = function() {
+//   var newq; 
+//   var speed = Math.random() * 2000;
+//   var closure = this;
+//   if(closure.movRight){
+//     newq = closure.maxRight;
+//   } else {
+//     newq = closure.maxLeft;
+//   }
+//   closure.movRight = !closure.movRight;
+//   $(this.$node).animate({ top: closure.topp, left: newq }, speed, function() {
+//     if (closure.isDancing) {
+//       closure.animateDiv();  
+//     }    
+//   });
+    
+// };
 

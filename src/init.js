@@ -93,8 +93,8 @@ $(document).ready(function() {
   });
 
   $('.bigCircle').on('click', function(event){
-    var xCenter = 200; //$('.danceFloor').width() / 2;
-    var yCenter = 200;//$('.danceFloor').height() / 2; 
+    var yCenter = $(window).width() / 2;
+    var xCenter = $(window).height() / 2; 
     var radius = 200;
     var numElem = window.dancers.length;
     var angle = 0;
