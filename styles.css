@@ -9,7 +9,7 @@ body{
 body, a:link, a:visited, a:active{
   color: lightblue;
 }
-.title, .addDancerButton, .lineUp{
+.title, .addDancerButton, .lineUp, .getInCircle, .bigCircle{
   padding:5px 12px;
   float:left;
 }
@@ -35,10 +35,22 @@ body, a:link, a:visited, a:active{
   background-size: ;
   height: 100%;
   cursor: url(https://www.wpclipart.com/signs_symbol/targets/crosshair/crosshair_1_T.png), auto;
-
 }
 
 .dfmask {
   height: 100%;
   background: linear-gradient(rgba(255,0,0,.3), rgba(255,0,0,0));
+}
+
+@keyframes rot {
+  from {
+    transform:  rotate(0deg)
+                translate(-150px)
+                rotate(0deg);
+  }
+  to {
+    transform:  rotate(360deg)
+                translate(-150px)
+                rotate(-360deg);
+  }
 }

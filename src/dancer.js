@@ -59,3 +59,4 @@ makeDancer.prototype.dance = function() {
 makeDancer.prototype.getInline = function(x, y) {
   $(this.$node).animate({ top: x, left: y }, 1000);
 };
+

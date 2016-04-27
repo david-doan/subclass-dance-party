@@ -58,18 +58,62 @@ $(document).ready(function() {
   });
 
   $('.lineUp').on('click', function(event){
-    var xNum = 0;
-    var yNum = 0;
+    var xNum = 200;
+    var yNum = 200;
 
     for(var i=0; i<window.dancers.length; i++){
-      window.dancers[i].stop();
+      if(window.dancers[i].__proto__.hasOwnProperty('animateDiv')){
+        window.dancers[i].stop();  
+      }
       window.dancers[i].getInline(xNum, yNum);
-      xNum = xNum + 20;
-      yNum = yNum + 20;
+      xNum = xNum + 10;
+      yNum = yNum + 10;
 
+      // $(window.dancers[i].$node).css({ 'animation': 'rot 5s linear infinite'});
     }
        
   }); 
 
+  $('.getInCircle').on('click', function(event){
+    var time = 0;
+    for(var i=0; i<window.dancers.length; i++){
+      if(window.dancers[i].__proto__.hasOwnProperty('animateDiv')){
+        window.dancers[i].stop();  
+      }
+      
+      (function() {
+        var closure = window.dancers[i].$node;
+        setTimeout(function() {
+          $(closure).css({ 'animation': 'rot 5s linear infinite'});
+        }, time);
+      })();
+      
+      time = time + 500;      
+    }       
+  });
+
+  $('.bigCircle').on('click', function(event){
+    var xCenter = $('.danceFloor').width() / 2;
+    var yCenter = $('.danceFloor').height() / 2; 
+    var radius = 100;
+    var numElem = window.dancers.length;
+    var angle = 0;
+    var angleInc = 360 / numElem;
+    var xNum = xCenter + radius;
+    var yNum = yCenter + radius;
+
+
+    for(var i=0; i<window.dancers.length; i++){
+      if(window.dancers[i].__proto__.hasOwnProperty('animateDiv')){
+        window.dancers[i].stop();  
+      }
+
+      window.dancers[i].getInline(xNum, yNum);
+      angle += angleInc;
+      xNum = radius * Math.sin(angle * Math.PI / 180);
+      yNum = radius * Math.cos(angle * Math.Pi / 180);
+
+    }       
+  });  
 });
 
