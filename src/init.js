@@ -93,14 +93,14 @@ $(document).ready(function() {
   });
 
   $('.bigCircle').on('click', function(event){
-    var xCenter = $('.danceFloor').width() / 2;
-    var yCenter = $('.danceFloor').height() / 2; 
-    var radius = 100;
+    var xCenter = 200; //$('.danceFloor').width() / 2;
+    var yCenter = 200;//$('.danceFloor').height() / 2; 
+    var radius = 200;
     var numElem = window.dancers.length;
     var angle = 0;
     var angleInc = 360 / numElem;
-    var xNum = xCenter + radius;
-    var yNum = yCenter + radius;
+    var xNum = xCenter + radius * Math.sin(angle * Math.PI / 180.0);
+    var yNum = yCenter + radius * Math.cos(angle * Math.PI / 180.0);
 
 
     for(var i=0; i<window.dancers.length; i++){
@@ -110,8 +110,8 @@ $(document).ready(function() {
 
       window.dancers[i].getInline(xNum, yNum);
       angle += angleInc;
-      xNum = radius * Math.sin(angle * Math.PI / 180);
-      yNum = radius * Math.cos(angle * Math.Pi / 180);
+      xNum = xCenter + radius * Math.sin(angle * Math.PI / 180.0);
+      yNum = yCenter + radius * Math.cos(angle * Math.PI / 180.0);
 
     }       
   });  
